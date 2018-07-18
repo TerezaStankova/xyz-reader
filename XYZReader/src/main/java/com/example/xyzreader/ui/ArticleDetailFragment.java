@@ -1,9 +1,10 @@
 package com.example.xyzreader.ui;
 
-import android.app.Fragment;
-import android.app.LoaderManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
 import android.content.Intent;
-import android.content.Loader;
+import android.support.v4.content.Loader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -267,15 +268,15 @@ public class ArticleDetailFragment extends Fragment implements
     }
 
     @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor data) {
         if (!isAdded()) {
-            if (cursor != null) {
-                cursor.close();
+            if (data != null) {
+                data.close();
             }
             return;
         }
 
-        mCursor = cursor;
+        mCursor = data;
         if (mCursor != null && !mCursor.moveToFirst()) {
             Log.e(TAG, "Error reading item detail cursor");
             mCursor.close();
@@ -284,6 +285,7 @@ public class ArticleDetailFragment extends Fragment implements
 
         bindViews();
     }
+
 
     @Override
     public void onLoaderReset(Loader<Cursor> cursorLoader) {

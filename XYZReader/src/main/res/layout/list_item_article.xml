@@ -1,47 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="4dp"
     android:layout_marginLeft="4dp"
     android:layout_marginRight="4dp"
     android:layout_marginTop="4dp"
-    android:layout_marginBottom="4dp"
-    android:textAlignment="center"
-    card_view:cardCornerRadius="8dp"
+    android:background="@color/colorPrimaryDark"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?selectableItemBackground">
+    android:foreground="?selectableItemBackground"
+    android:textAlignment="center"
+    card_view:cardCornerRadius="8dp">
 
-    <FrameLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorAccentDark"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
         android:minHeight="278dp">
 
         <!--suppress AndroidLintContentDescription -->
         <ImageView
             android:id="@+id/thumbnail"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop" />
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/scrim_gradient" />
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            card_view:layout_constraintVertical_bias="0.0" />
 
         <LinearLayout
             android:id="@+id/article__description_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
+            android:background="@drawable/scrim_gradient"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingBottom="8dp"
-            android:paddingTop="8dp">
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:paddingTop="8dp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/thumbnail">
 
             <TextView
                 android:id="@+id/article_title"
@@ -68,6 +74,6 @@
 
         </LinearLayout>
 
-    </FrameLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.CardView>

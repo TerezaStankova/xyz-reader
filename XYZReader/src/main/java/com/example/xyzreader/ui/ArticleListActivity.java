@@ -201,8 +201,8 @@ public class ArticleListActivity extends AppCompatActivity implements
 
             Picasso.with(holder.itemView.getContext())
                     .load(mCursor.getString(ArticleLoader.Query.THUMB_URL))
-                    .placeholder(R.mipmap.ic_launcher)
-                    .error(R.mipmap.ic_launcher)
+                    .placeholder(R.drawable.empty_detail)
+                    .error(R.drawable.empty_detail)
                     .into(holder.thumbnailView);
         }
 

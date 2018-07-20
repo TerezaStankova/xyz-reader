@@ -24,8 +24,8 @@
     <color name="colorPrimaryTransparent">#D9FD5621</color>
     <color name="colorPrimaryDark">#C21B00</color>
     <color name="colorPrimaryLight">#FF894F</color>
-    <color name="colorAccent">#00FFBF</color>
-    <color name="colorAccentDark">#00B286</color>
+    <color name="colorAccent">#00B286</color>
+    <color name="colorAccentLight">#00FFBF</color>
     <color name="TextOnLight">#000000</color>
     <color name="TextOnDark">#ffffff</color>
 

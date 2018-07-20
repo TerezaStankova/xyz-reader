@@ -29,6 +29,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.support.v7.widget.Toolbar;
 
@@ -36,6 +37,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.example.xyzreader.R;
 import com.example.xyzreader.data.ArticleLoader;
+import com.squareup.picasso.Picasso;
 
 /**
  * A fragment representing a single Article detail screen. This fragment is
@@ -53,7 +55,7 @@ public class ArticleDetailFragment extends Fragment implements
     private long mItemId;
     private View mRootView;
     private int mMutedColor = 0xFF333333;
-    private ObservableScrollView mScrollView;
+    private ScrollView mScrollView;
     private DrawInsetsFrameLayout mDrawInsetsFrameLayout;
     //private ColorDrawable mStatusBarColorDrawable;
 
@@ -142,18 +144,18 @@ public class ArticleDetailFragment extends Fragment implements
             }
         });
 
-        mScrollView = (ObservableScrollView) mRootView.findViewById(R.id.scrollview);
-        mScrollView.setCallbacks(new ObservableScrollView.Callbacks() {
+        mScrollView = (ScrollView) mRootView.findViewById(R.id.scrollview);
+        /*mScrollView.setCallbacks(new ObservableScrollView.Callbacks() {
             @Override
             public void onScrollChanged() {
                 mScrollY = mScrollView.getScrollY();
                 //getActivityCast().onUpButtonFloorChanged(mItemId, ArticleDetailFragment.this);
                 //updateStatusBar();
             }
-        });
+        });*/
 
         mPhotoView = (ImageView) mRootView.findViewById(R.id.photo);
-        mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
+        //mPhotoContainerView = mRootView.findViewById(R.id.photo_container);
 
         //mStatusBarColorDrawable = new ColorDrawable(0);
 
@@ -172,7 +174,7 @@ public class ArticleDetailFragment extends Fragment implements
         return mRootView;
     }
 
-    private void updateStatusBar() {
+    /*private void updateStatusBar() {
         //int color = 0;
         if (mPhotoView != null && mTopInset != 0 && mScrollY > 0) {
             float f = progress(mScrollY,
@@ -182,12 +184,12 @@ public class ArticleDetailFragment extends Fragment implements
                     (int) (Color.red(mMutedColor) * 0.9),
                     (int) (Color.green(mMutedColor) * 0.9),
                     (int) (Color.blue(mMutedColor) * 0.9));*/
-        }
+        //}
         //mStatusBarColorDrawable.setColor(color);
        // mDrawInsetsFrameLayout.setInsetBackground(mStatusBarColorDrawable);
-    }
+    //}
 
-    static float progress(float v, float min, float max) {
+    /*static float progress(float v, float min, float max) {
         return constrain((v - min) / (max - min), 0, 1);
     }
 
@@ -199,7 +201,7 @@ public class ArticleDetailFragment extends Fragment implements
         } else {
             return val;
         }
-    }
+    }*/
 
     private Date parsePublishedDate() {
         try {
@@ -221,7 +223,7 @@ public class ArticleDetailFragment extends Fragment implements
         TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
         bylineView.setMovementMethod(new LinkMovementMethod());
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) mRootView.findViewById(R.id.photo_container);
+        collapsingToolbarLayout = (CollapsingToolbarLayout) mRootView.findViewById(R.id.photo_container);
 
 
 
@@ -253,7 +255,17 @@ public class ArticleDetailFragment extends Fragment implements
             collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
 
             bodyView.setText(Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY).replaceAll("(\r\n|\n)", "<br />")));
-            ImageLoaderHelper.getInstance(getActivity()).getImageLoader()
+
+
+            Picasso.with(getActivity().getApplicationContext())
+                    .load(mCursor.getString(ArticleLoader.Query.THUMB_URL))
+                    .placeholder(R.drawable.empty_detail)
+                    .error(R.drawable.empty_detail)
+                    .into(mPhotoView);
+
+
+
+            /*ImageLoaderHelper.getInstance(getActivity()).getImageLoader()
                     .get(mCursor.getString(ArticleLoader.Query.PHOTO_URL), new ImageLoader.ImageListener() {
                         @Override
                         public void onResponse(ImageLoader.ImageContainer imageContainer, boolean b) {
@@ -263,7 +275,7 @@ public class ArticleDetailFragment extends Fragment implements
                                 mMutedColor = p.getDarkMutedColor(0xFF333333);
                                 mPhotoView.setImageBitmap(imageContainer.getBitmap());
                                 //mRootView.findViewById(R.id.meta_bar).setBackgroundColor(mMutedColor);
-                                updateStatusBar();
+                                //updateStatusBar();
                             }
                         }
 
@@ -271,7 +283,8 @@ public class ArticleDetailFragment extends Fragment implements
                         public void onErrorResponse(VolleyError volleyError) {
 
                         }
-                    });
+                    });*/
+
         } else {
             mRootView.setVisibility(View.GONE);
             titleView.setText("N/A");
@@ -311,7 +324,7 @@ public class ArticleDetailFragment extends Fragment implements
         bindViews();
     }
 
-    public int getUpButtonFloor() {
+    /*public int getUpButtonFloor() {
         if (mPhotoContainerView == null || mPhotoView.getHeight() == 0) {
             return Integer.MAX_VALUE;
         }
@@ -320,5 +333,5 @@ public class ArticleDetailFragment extends Fragment implements
         return mIsCard
                 ? (int) mPhotoContainerView.getTranslationY() + mPhotoView.getHeight() - mScrollY
                 : mPhotoView.getHeight() - mScrollY;
-    }
+    }*/
 }

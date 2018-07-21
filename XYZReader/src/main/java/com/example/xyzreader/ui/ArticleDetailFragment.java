@@ -49,12 +49,12 @@ public class ArticleDetailFragment extends Fragment implements
     private static final String TAG = "ArticleDetailFragment";
 
     public static final String ARG_ITEM_ID = "item_id";
-    private static final float PARALLAX_FACTOR = 1.25f;
+    //private static final float PARALLAX_FACTOR = 1.25f;
 
     private Cursor mCursor;
     private long mItemId;
     private View mRootView;
-    private int mMutedColor = 0xFF333333;
+    //private int mMutedColor = 0xFF333333;
     private ScrollView mScrollView;
     private DrawInsetsFrameLayout mDrawInsetsFrameLayout;
     //private ColorDrawable mStatusBarColorDrawable;
@@ -129,12 +129,10 @@ public class ArticleDetailFragment extends Fragment implements
             @Override
             public void onInsetsChanged(Rect insets) {
                 mTopInset = insets.top;
-
-                String title = getResources().getString(R.string.app_name);
             }
         });*/
 
-        collapsingToolbarLayout = (CollapsingToolbarLayout) mRootView.findViewById(R.id.photo_container);
+        //collapsingToolbarLayout = (CollapsingToolbarLayout) mRootView.findViewById(R.id.photo_container);
         Toolbar toolbar = (Toolbar) mRootView.findViewById(R.id.toolbar2);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -223,7 +221,7 @@ public class ArticleDetailFragment extends Fragment implements
         TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
         bylineView.setMovementMethod(new LinkMovementMethod());
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
-        collapsingToolbarLayout = (CollapsingToolbarLayout) mRootView.findViewById(R.id.photo_container);
+        Toolbar toolbar = (Toolbar) mRootView.findViewById(R.id.toolbar2);
 
 
 
@@ -251,8 +249,8 @@ public class ArticleDetailFragment extends Fragment implements
 
             }
 
-            collapsingToolbarLayout.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
-            collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
+            toolbar.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
+            //collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
 
             bodyView.setText(Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY).replaceAll("(\r\n|\n)", "<br />")));
 

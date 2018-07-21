@@ -132,9 +132,8 @@ public class ArticleDetailFragment extends Fragment implements
             }
         });*/
 
-        //collapsingToolbarLayout = (CollapsingToolbarLayout) mRootView.findViewById(R.id.photo_container);
+        collapsingToolbarLayout = (CollapsingToolbarLayout) mRootView.findViewById(R.id.photo_container);
         Toolbar toolbar = (Toolbar) mRootView.findViewById(R.id.toolbar2);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,7 +141,7 @@ public class ArticleDetailFragment extends Fragment implements
             }
         });
 
-        mScrollView = (ScrollView) mRootView.findViewById(R.id.scrollview);
+        //mScrollView = (ScrollView) mRootView.findViewById(R.id.scrollview);
         /*mScrollView.setCallbacks(new ObservableScrollView.Callbacks() {
             @Override
             public void onScrollChanged() {
@@ -249,8 +248,8 @@ public class ArticleDetailFragment extends Fragment implements
 
             }
 
-            toolbar.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
-            //collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
+            collapsingToolbarLayout.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
+            collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(android.R.color.transparent));
 
             bodyView.setText(Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY).replaceAll("(\r\n|\n)", "<br />")));
 

@@ -13,6 +13,7 @@
     <dimen name="cover_height">20dp</dimen>
 
 
+    <dimen name="image_max_height">20dp</dimen>
     <dimen name="keyline_1">50dp</dimen>
     <dimen name="keyline_2">72dp</dimen>
 </resources>

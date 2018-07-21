@@ -18,20 +18,19 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:minHeight="278dp">
+        android:background="@color/colorPrimaryDark">
 
         <!--suppress AndroidLintContentDescription -->
         <ImageView
             android:id="@+id/thumbnail"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            card_view:layout_constraintVertical_bias="0.0" />
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/article__description_layout"
@@ -66,6 +65,7 @@
                 style="@style/myLineTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:paddingBottom="16dp"

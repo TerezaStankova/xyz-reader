@@ -16,12 +16,7 @@
             android:id="@+id/collapsing_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:collapsedTitleGravity="start"
-            app:expandedTitleGravity="end"
-            app:expandedTitleMarginEnd="64dp"
-            app:expandedTitleMarginStart="48dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
 
             <ImageView
                 android:id="@+id/logo_image"
